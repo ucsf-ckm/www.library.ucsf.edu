@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/ucsf-ckm/www.library.ucsf.edu/issues"
   },
-  "homepage": "https://github.com/ucsf-ckm/www.library.ucsf.edu"
+  "homepage": "https://github.com/ucsf-ckm/www.library.ucsf.edu",
+  "dependencies": {
+    "hapi": "^8.4.0"
+  }
 }
