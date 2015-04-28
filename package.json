@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "description": "UCSF Library website",
   "main": "index.js",
+  "bin": {
+    "server.js": "./server.js"
+  },
   "scripts": {
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
