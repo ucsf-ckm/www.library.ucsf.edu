@@ -1,0 +1,19 @@
+{
+  "name": "www.library.ucsf.edu",
+  "version": "1.0.0",
+  "description": "UCSF Library website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ucsf-ckm/www.library.ucsf.edu.git"
+  },
+  "author": "Rich Trott <rtrott@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ucsf-ckm/www.library.ucsf.edu/issues"
+  },
+  "homepage": "https://github.com/ucsf-ckm/www.library.ucsf.edu"
+}
