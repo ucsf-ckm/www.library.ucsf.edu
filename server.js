@@ -1,7 +1,16 @@
 var Hapi = require('hapi');
+var Path = require('path');
 
 var server = new Hapi.Server();
 server.connection({ port: 80 });
+
+server.route({
+	method: '*',
+	path: '/',
+	handler: {
+		file: Path.join(__dirname, 'static', 'index.html')
+	}
+})
 
 server.route({
 	method: '*',
