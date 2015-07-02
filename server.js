@@ -2,8 +2,8 @@ var Hapi = require('hapi');
 var Path = require('path');
 
 const proxyOptions = {
-    host: 'www.library.ucsf.edu',
-    port: 80,
+    host: 'localhost',
+    port: 8080,
     passThrough: true,
     xforward: true
 };
