@@ -2,8 +2,8 @@ var Hapi = require('hapi');
 var Path = require('path');
 
 const proxyOptions = {
-    host: 'localhost',
-    port: 8080,
+    host: process.env.HOST,
+    port: process.env.PORT,
     passThrough: true,
     xforward: true
 };
