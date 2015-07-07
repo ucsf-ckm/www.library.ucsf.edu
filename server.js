@@ -18,9 +18,22 @@ server.route({
     handler: function (request, reply) {
         var uaString = request.headers['user-agent'];
         if (/MSIE [6-8]\./.test(request.headers['user-agent'])) {
-            return reply.proxy(proxyOptions);
+            return reply.file(Path.join(__dirname, 'static/ie8.html'));
         }
-        reply.file(Path.join(__dirname, 'static', 'index.html'));
+        reply.file(Path.join(__dirname, 'static/index.html'));
+    },
+    config: {
+        payload: {
+            parse: false
+        }
+    }
+});
+
+server.route({
+    method: '*',
+    path: '/images/browser_security.png',
+    handler: function (request, reply) {
+        reply.file(Path.join(__dirname, '/static/images/browser_security.png'));
     },
     config: {
         payload: {
