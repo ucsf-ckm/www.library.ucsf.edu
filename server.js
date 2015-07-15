@@ -5,6 +5,7 @@ const proxyOptions = {
     host: process.env.HOST,
     port: process.env.PORT,
     passThrough: true,
+    redirects: 3,
     xforward: true
 };
 
