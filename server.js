@@ -1,5 +1,6 @@
 var Hapi = require('hapi');
 var Path = require('path');
+var Fs = require('fs');
 
 const proxyOptions = {
     host: process.env.HOST,
@@ -31,9 +32,17 @@ server.route({
 
 server.route({
     method: '*',
-    path: '/images/browser_security.png',
+    path: '/images/{file}',
     handler: function (request, reply) {
-        reply.file(Path.join(__dirname, '/static/images/browser_security.png'));
+        // This is safe because {file} is only one path element, so it could be
+        // .. but not ../.. or ../etc, and we check isFile()
+        const fullPath = Path.join(__dirname, '/static/images/', request.params.file);
+        Fs.stat(fullPath, function (err, data) {
+            if (err || ! data.isFile()) {
+                return reply.proxy(proxyOptions);
+            }
+            reply.file(fullPath);
+        });
     },
     config: {
         payload: {
