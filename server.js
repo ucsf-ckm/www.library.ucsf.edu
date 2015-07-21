@@ -65,7 +65,7 @@ server.route({
     path: '/{p*}',
     handler: function (request, reply) {
         // Recent versions of Windows need the Content-type header to render CSS
-        if (request.params.p.slice(-4) === '.css') {
+        if ((request.params.p.slice(-4) === '.css') || (request.params.p.slice(-3) === '.js')) {
             return reply.proxy(proxyPassThroughOptions);
         }
         return reply.proxy(proxyDefaultOptions);
