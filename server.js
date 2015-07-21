@@ -2,12 +2,21 @@ var Hapi = require('hapi');
 var Path = require('path');
 var Fs = require('fs');
 
-const proxyOptions = {
+const proxyDefaultOptions = {
     host: process.env.HOST,
     port: process.env.PORT,
     redirects: 3,
+    passThrough: false,
     xforward: true
 };
+
+const proxyPassThroughOptions = {
+    host: process.env.HOST,
+    port: process.env.PORT,
+    redirects: 3,
+    passThrough: true,
+    xforward: true
+}
 
 var server = new Hapi.Server();
 server.connection({ port: 8000 });
@@ -39,9 +48,9 @@ server.route({
         const fullPath = Path.join(__dirname, '/static/images/', request.params.file);
         Fs.stat(fullPath, function (err, data) {
             if (err || ! data.isFile()) {
-                return reply.proxy(proxyOptions);
+                return reply.proxy(proxyDefaultOptions);
             }
-            reply.file(fullPath);
+            return reply.file(fullPath);
         });
     },
     config: {
@@ -54,7 +63,18 @@ server.route({
 server.route({
     method: '*',
     path: '/{p*}',
-    handler: { proxy: proxyOptions }
+    handler: function (request, reply) {
+        // Recent versions of Windows need the Content-type header to render CSS
+        if (request.params.p.slice(-4) === '.css') {
+            return reply.proxy(proxyPassThroughOptions);
+        }
+        return reply.proxy(proxyDefaultOptions);
+    },
+    config: {
+        payload: {
+            parse: false
+        }
+    }
 });
 
 server.start(function () {
