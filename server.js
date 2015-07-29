@@ -42,7 +42,7 @@ server.route({
         const fullPath = Path.join(__dirname, '/static/images/', request.params.file);
         Fs.stat(fullPath, function (err, data) {
             if (err || ! data.isFile()) {
-                return reply.proxy(proxyOptions());
+                return reply.proxy(proxyOptions({passThrough: false}));
             }
             return reply.file(fullPath);
         });
@@ -62,7 +62,7 @@ server.route({
         if ((request.params.p.slice(-4) === '.css') || (request.params.p.slice(-3) === '.js')) {
             return reply.proxy(proxyOptions({passThrough: true}));
         }
-        return reply.proxy(proxyOptions());
+        return reply.proxy(proxyOptions({passThrough: false}));
     },
     config: {
         payload: {
