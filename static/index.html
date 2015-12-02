@@ -263,41 +263,47 @@
           speed: 3000
         });
 
-        var fetchNews = function () {
-          var initialize = function () {
-            var feed = new google.feeds.Feed("https://news.library.ucsf.edu/feed/");
-            feed.load(function(result) {
-              if (!result.error) {
-                var entry;
-                var imageSrc;
-                var l = result.feed.entries.length > 4 ? 4 : result.feed.entries.length;
-                for (var i = 0; i < l; i++) {
-                  entry = result.feed.entries[i];
+        var entry;
+        var imageSrc;
+        entries = [
+          {
+            title: 'Access to Streaming Clinical Skills Videos',
+            image: 'https://news.library.ucsf.edu/wp-content/uploads/2015/11/Bates-480x270.jpg',
+            link: 'https://news.library.ucsf.edu/2015/11/access-to-streaming-clinical-skills-videos/'
+          },
+          {
+            title: 'Acland’s Video Atlas of Human Anatomy',
+            image: 'https://news.library.ucsf.edu/wp-content/uploads/2015/11/HandBone-480x270.jpg',
+            link: 'https://news.library.ucsf.edu/2015/11/aclands-video-atlas-of-human-anatomy/'
+          },
+          {
+            title: 'UPCOMING LECTURE DEC 4: The Transformation of Anesthesia, 1900-1960',
+            image: 'https://news.library.ucsf.edu/wp-content/uploads/2015/11/AnesthesiaLecture-480x270.jpg',
+            link: 'https://news.library.ucsf.edu/2015/11/upcoming-lecture-dec-4-the-transformation-of-anesthesia-1900-1960/'
+          },
+          {
+            title: 'FINDINGS: Your Online Experience with the Library',
+            image: 'https://news.library.ucsf.edu/wp-content/uploads/2015/10/Feedback1-480x270.jpg',
+            link: 'https://news.library.ucsf.edu/2015/11/always-collecting/'
+          }
+        ];
+        var l = entries.length > 4 ? 4 : entries.length;
+        for (var i = 0; i < l; i++) {
+          entry = entries[i];
 
-                  $('#newsTitle_' + i)
-                    .text(entry.title);
-                  
-                  imageSrc = $('img', '<div>' + entry.content + '</div>').attr('src');
-                  $('#newsImage_' + i)
-                    .attr('src', imageSrc);
+          $('#newsTitle_' + i)
+            .text(entry.title);
+          
+          imageSrc = entry.image;
+          $('#newsImage_' + i)
+            .attr('src', imageSrc);
 
-                  $('#newsLink_' + i)
-                    .attr('href', entry.link);
+          $('#newsLink_' + i)
+            .attr('href', entry.link);
 
-                  $('#newsItem_' + i)
-                    .removeClass('hide');
-                }
-              }
-            });
-          };
-          google.load("feeds", "1", {nocss: true, callback: initialize});
-        };
-
-        if (typeof google === 'object') {
-          return fetchNews();
+          $('#newsItem_' + i)
+            .removeClass('hide');
         }
-
-        $.getScript('https://www.google.com/jsapi', fetchNews);
       }
     );
     </script>
