@@ -9,6 +9,7 @@ const proxyOptions = function (options) {
     return {
         host: process.env.HOST,
         port: process.env.PORT,
+        protocol: 'https',
         redirects: 3,
         passThrough: !!options.passThrough,
         xforward: true
