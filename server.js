@@ -1,6 +1,9 @@
 var Hapi = require('hapi');
+var Hoek = require('hoek');
+var Inert = require('inert');
 var Path = require('path');
 var Fs = require('fs');
+
 
 const proxyOptions = function (options) {
     return {
@@ -15,6 +18,29 @@ const proxyOptions = function (options) {
 var server = new Hapi.Server();
 server.connection({ port: 8000 });
 
+// Proxy
+server.register({register: require('h2o2')}, function (err) {
+    if (err) {
+        console.log('Failed to load h2o2');
+    }
+});
+
+// Views
+server.register(require('vision'), function (err) {
+    Hoek.assert(!err, err);
+
+    server.views({
+        engines: {
+            html: require('handlebars')
+        },
+        relativeTo: __dirname,
+        path: 'templates'
+    });
+});
+
+// Static Files
+server.register(Inert, function () {});
+
 
 server.route({
     method: '*',
@@ -24,7 +50,7 @@ server.route({
         if (/MSIE [6-8]\./.test(request.headers['user-agent'])) {
             return reply.file(Path.join(__dirname, 'static/ie8.html'));
         }
-        reply.file(Path.join(__dirname, 'static/index.html'));
+        reply.view('index');
     },
     config: {
         payload: {
