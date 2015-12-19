@@ -1,4 +1,5 @@
 module.exports = function (index, prop) {
+    // /images/placeholder_480x270.gif is the default image if there's no data
     const news = [
         {
             title: 'CLE Tips for Finals',
