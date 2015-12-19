@@ -151,49 +151,45 @@
     <div id="news">
   <div class="slick" id="news-carousel">
     <div class="row collapse outline" id="newsItem_0">
-      <a href="" id="newsLink_0">
+      <a href="{{newsEntry.[0].link}}" id="newsLink_0">
         <div class="medium-6 large-8 columns">
-          <img src="/images/placeholder_480x270.gif" class="news-image" width="480" height="270" alt="" id="newsImage_0">
+          <img src="{{newsEntry.[0].image}}" class="news-image" width="480" height="270" alt="" id="newsImage_0">
         </div>
         <div class="medium-6 large-4 columns">
-          <div class="small-text-center news-text" id="newsTitle_0">
-          </div>
+          <div class="small-text-center news-text" id="newsTitle_0">{{newsEntry.[0].title}}</div>
           <p class="small-text-center news-more show-for-medium-up"><span class="button small radius shadow">Learn More</span></p>
         </div>
       </a>
     </div>
-    <div class="row collapse outline hide" id="newsItem_1">
-      <a href="" id="newsLink_1">
+    <div class="row collapse outline" id="newsItem_1">
+      <a href="{{newsEntry.[1].link}}" id="newsLink_1">
         <div class="medium-6 large-8 columns">
-          <img src="/images/placeholder_480x270.gif" class="news-image" width="480" height="270" alt="" id="newsImage_1">
+          <img src="{{newsEntry.[1].image}}" class="news-image" width="480" height="270" alt="" id="newsImage_1">
         </div>
         <div class="medium-6 large-4 columns">
-          <div class="small-text-center news-text" id="newsTitle_1">
-          </div>
+          <div class="small-text-center news-text" id="newsTitle_1">{{newsEntry.[1].title}}</div>
           <p class="small-text-center news-more show-for-medium-up"><span class="button small radius shadow">Learn More</span></p>
         </div>
       </a>
     </div>
-    <div class="row collapse outline hide" id="newsItem_2">
-      <a href="" id="newsLink_2">
+    <div class="row collapse outline" id="newsItem_2">
+      <a href="{{newsEntry.[2].link}}" id="newsLink_2">
         <div class="medium-6 large-8 columns">
-          <img src="/images/placeholder_480x270.gif" class="news-image" width="480" height="270" alt="" id="newsImage_2">
+          <img src="{{newsEntry.[2].image}}" class="news-image" width="480" height="270" alt="" id="newsImage_2">
         </div>
         <div class="medium-6 large-4 columns">
-          <div class="small-text-center news-text" id="newsTitle_2">
-          </div>
+          <div class="small-text-center news-text" id="newsTitle_2">{{newsEntry.[2].title}}</div>
           <p class="small-text-center news-more show-for-medium-up"><span class="button small radius shadow">Learn More</span></p>
         </div>
       </a>
     </div>
-    <div class="row collapse outline hide" id="newsItem_3">
-      <a href="" id="newsLink_3">
+    <div class="row collapse outline" id="newsItem_3">
+      <a href="{{newsEntry.[3].link}}" id="newsLink_3">
         <div class="medium-6 large-8 columns">
-          <img src="/images/placeholder_480x270.gif" class="news-image" width="480" height="270" alt="" id="newsImage_3">
+          <img src="{{newsEntry.[3].image}}" class="news-image" width="480" height="270" alt="" id="newsImage_3">
         </div>
         <div class="medium-6 large-4 columns">
-          <div class="small-text-center news-text" id="newsTitle_3">
-          </div>
+          <div class="small-text-center news-text" id="newsTitle_3">{{newsEntry.[3].title}}</div>
           <p class="small-text-center news-more show-for-medium-up"><span class="button small radius shadow">Learn More</span></p>
         </div>
       </a>
@@ -276,48 +272,6 @@
           fade: true,
           speed: 3000
         });
-
-        var entry;
-        var imageSrc;
-        entries = [
-          {
-            title: 'CLE Tips for Finals',
-            image: 'https://news.library.ucsf.edu/wp-content/uploads/2015/12/CLETipsFinals-480x270.jpg',
-            link: 'https://news.library.ucsf.edu/2015/12/cle-tips-for-finals/'
-          },
-          {
-            title: 'Access to Streaming Clinical Skills Videos',
-            image: 'https://news.library.ucsf.edu/wp-content/uploads/2015/11/Bates-480x270.jpg',
-            link: 'https://news.library.ucsf.edu/2015/11/access-to-streaming-clinical-skills-videos/'
-          },
-          {
-            title: 'Acland’s Video Atlas of Human Anatomy',
-            image: 'https://news.library.ucsf.edu/wp-content/uploads/2015/11/HandBone-480x270.jpg',
-            link: 'https://news.library.ucsf.edu/2015/11/aclands-video-atlas-of-human-anatomy/'
-          },
-          {
-            title: 'FINDINGS: Your Online Experience with the Library',
-            image: 'https://news.library.ucsf.edu/wp-content/uploads/2015/10/Feedback1-480x270.jpg',
-            link: 'https://news.library.ucsf.edu/2015/11/always-collecting/'
-          }
-        ];
-        var l = entries.length > 4 ? 4 : entries.length;
-        for (var i = 0; i < l; i++) {
-          entry = entries[i];
-
-          $('#newsTitle_' + i)
-            .text(entry.title);
-          
-          imageSrc = entry.image;
-          $('#newsImage_' + i)
-            .attr('src', imageSrc);
-
-          $('#newsLink_' + i)
-            .attr('href', entry.link);
-
-          $('#newsItem_' + i)
-            .removeClass('hide');
-        }
       }
     );
     </script>
