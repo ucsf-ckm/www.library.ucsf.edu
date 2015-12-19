@@ -35,7 +35,8 @@ server.register(require('vision'), function (err) {
             html: require('handlebars')
         },
         relativeTo: __dirname,
-        path: 'templates'
+        path: 'templates',
+        helpersPath: 'helpers'
     });
 });
 
@@ -51,28 +52,7 @@ server.route({
         if (/MSIE [6-8]\./.test(request.headers['user-agent'])) {
             return reply.file(Path.join(__dirname, 'static/ie8.html'));
         }
-        reply.view('index', {newsEntry: [
-          {
-            title: 'CLE Tips for Finals',
-            image: 'https://news.library.ucsf.edu/wp-content/uploads/2015/12/CLETipsFinals-480x270.jpg',
-            link: 'https://news.library.ucsf.edu/2015/12/cle-tips-for-finals/'
-          },
-          {
-            title: 'Access to Streaming Clinical Skills Videos',
-            image: 'https://news.library.ucsf.edu/wp-content/uploads/2015/11/Bates-480x270.jpg',
-            link: 'https://news.library.ucsf.edu/2015/11/access-to-streaming-clinical-skills-videos/'
-          },
-          {
-            title: 'Acland’s Video Atlas of Human Anatomy',
-            image: 'https://news.library.ucsf.edu/wp-content/uploads/2015/11/HandBone-480x270.jpg',
-            link: 'https://news.library.ucsf.edu/2015/11/aclands-video-atlas-of-human-anatomy/'
-          },
-          {
-            title: 'FINDINGS: Your Online Experience with the Library',
-            image: 'https://news.library.ucsf.edu/wp-content/uploads/2015/10/Feedback1-480x270.jpg',
-            link: 'https://news.library.ucsf.edu/2015/11/always-collecting/'
-          }
-        ]});
+        reply.view('index');
     },
     config: {
         payload: {
