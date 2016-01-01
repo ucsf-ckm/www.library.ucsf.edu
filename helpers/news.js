@@ -57,7 +57,6 @@ var fetchNewsCallback = function(err, data) {
   // TODO: log the error or do something with it
   if (!err) {
     news.items = data;
-    news.timestamp = Date.now();
   }
 };
 fetchNews(fetchNewsCallback);
@@ -65,6 +64,7 @@ fetchNews(fetchNewsCallback);
 
 module.exports = function (index, prop) {
   if (news.items.length < 4 || Date.now() - news.timestamp > tenMinutes) {
+    news.timestamp = Date.now();
     fetchNews(fetchNewsCallback);
   }
   return news.items[index][prop];
