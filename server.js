@@ -13,7 +13,7 @@ const proxyOptions = function (options) {
         redirects: 3,
         passThrough: !!options.passThrough,
         xforward: true
-    }
+    };
 }; 
 
 var server = new Hapi.Server();
